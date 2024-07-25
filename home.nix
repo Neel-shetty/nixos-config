@@ -19,6 +19,15 @@
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
+    env = [
+    "LIBVA_DRIVER_NAME=nvidia"
+    "XDG_SESSION_TYPE=wayland"
+    "GBM_BACKEND=nvidia-drm"
+    "__GLX_VENDOR_LIBRARY_NAME=nvidia"
+    ];
+    cursor = {
+      no_hardware_cursors = true;
+    };
     bind =
       [
         "$mod, F, exec, firefox"
@@ -134,6 +143,7 @@
     jq
     komikku
     less
+    nixfmt
     lf
     mangohud
     man
