@@ -71,17 +71,25 @@
   };
 
   programs.zsh = {
-  enable = true;
-  enableCompletion = true;
-  autosuggestion.enable = true;
-  syntaxHighlighting.enable = true;
-  zplug = {
     enable = true;
-    plugins = [
-      { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
-      { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
-    ];
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    zplug = {
+      enable = true;
+      plugins = [
+        { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
+        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
+      ];
+    };
+
+    shellAliases = {
+      ll = "ls -l";
+      la = "ls -a";
+      update = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+    };
   };
+
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -105,19 +113,6 @@
     };
 
   };
-
-
-
-
-
-  shellAliases = {
-    ll = "ls -l";
-    la = "ls -a";
-    update = "sudo nixos-rebuild switch --flake ~/.dotfiles";
-  };
-};
-
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
