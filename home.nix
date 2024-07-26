@@ -31,6 +31,10 @@
     cursor = {
       no_hardware_cursors = true;
     };
+    exec-once = [
+      "waybar &"
+      "dunst &"
+    ]
     bind =
       [
         "$mod, F, exec, firefox"
@@ -38,24 +42,24 @@
         "$mod, F2, focusmonitor, -1"
         "$mod, Return, exec, $term"
         "$mod SHIFT, Q, killactive, "
-        "$mainMod SHIFT, F, togglefloating,"
-        "$mainMod, F, fullscreen"
-        "$mainMod, Q, killactive,"
-        "$mainMod, T, exec, $files"
-        "$mainMod, tab, workspace, m+1"
-        "$mainMod SHIFT, tab, workspace, m-1"
+        "$mod SHIFT, F, togglefloating,"
+        "$mod, F, fullscreen"
+        "$mod, Q, killactive,"
+        "$mod, T, exec, $files"
+        "$mod, tab, workspace, m+1"
+        "$mod SHIFT, tab, workspace, m-1"
         "ALT, tab, cyclenext,"
         "ALT SHIFT, tab, bringactivetotop,"
         ", Print, exec, grimblast copy area"
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
-        "$mainMod, Print, exec, hyprshot -m output -o ~/Pictures/Screenshots"
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+        "$mod, mouse_down, workspace, e+1"
+        "$mod, mouse_up, workspace, e-1"
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+        "$mod, Print, exec, hyprshot -m output -o ~/Pictures/Screenshots"
       ]
       ++ (
         # workspaces
