@@ -34,7 +34,7 @@
     exec-once = [
       "waybar &"
       "dunst &"
-    ]
+    ];
     bind =
       [
         "$mod, F, exec, firefox"
