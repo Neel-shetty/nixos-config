@@ -15,70 +15,123 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
-    "$term" = "kgx";
+    "$term" = "kitty";
     "$browser" = "brave";
     "$files" = "thunar";
     env = [
-    "LIBVA_DRIVER_NAME=nvidia"
-    "XDG_SESSION_TYPE=wayland"
-    "GBM_BACKEND=nvidia-drm"
-    "__GLX_VENDOR_LIBRARY_NAME=nvidia"
+      "LIBVA_DRIVER_NAME=nvidia"
+      "XDG_SESSION_TYPE=wayland"
+      "GBM_BACKEND=nvidia-drm"
+      "__GLX_VENDOR_LIBRARY_NAME=nvidia"
+      "CLUTTER_BACKEND=wayland"
+      "GDK_BACKEND=wayland,x11"
+      "QT_AUTO_SCREEN_SCALE_FACTOR=1"
+      "QT_SCALE_FACTOR=1"
+      "QT_WAYLAND_DISABLE_WINDOWDECORATION=1"
+      "XDG_CURRENT_DESKTOP=Hyprland"
+      "XDG_SESSION_DESKTOP=Hyprland"
     ];
-    cursor = {
-      no_hardware_cursors = true;
+    dwindle = {
+      pseudotile = "yes";
+      preserve_split = "yes";
+      special_scale_factor = 0.8;
     };
-    exec-once = [
-      "waybar &"
-      "dunst &"
-    ];
-    bind =
-      [
-        "$mod, F, exec, firefox"
-        "$mod, F1, focusmonitor, +1"
-        "$mod, F2, focusmonitor, -1"
-        "$mod, Return, exec, $term"
-        "$mod SHIFT, Q, killactive, "
-        "$mod SHIFT, F, togglefloating,"
-        "$mod, F, fullscreen"
-        "$mod, Q, killactive,"
-        "$mod, T, exec, $files"
-        "$mod, tab, workspace, m+1"
-        "$mod SHIFT, tab, workspace, m-1"
-        "ALT, tab, cyclenext,"
-        "ALT SHIFT, tab, bringactivetotop,"
-        ", Print, exec, grimblast copy area"
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-        "$mod, Print, exec, hyprshot -m output -o ~/Pictures/Screenshots"
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-        builtins.concatLists (builtins.genList (
-            x: let
-              ws = let
-                c = (x + 1) / 10;
-              in
-                builtins.toString (x + 1 - (c * 10));
-            in [
-              "$mod, ${ws}, workspace, ${toString (x + 1)}"
-              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-            ]
-          )
-          10)
-      );
-  };
+    # master = [ "new_is_master = 0" "new_on_top = 0" "mfact = 0.5" ];
+    general = {
+      sensitivity = 2.5;
+      apply_sens_to_raw = 1;
+      gaps_in = 8;
+      gaps_out = 8;
+      border_size = 1;
+      resize_on_border = true;
+    };
+    # group = {
+    #   col.border_active = "rgba (7 aa2f7aa)";
+    #   groupbar = { col.active = "rgba (7 aa2f7aa)"; };
+    # };
+    decoration = {
+      rounding = 8;
 
+      active_opacity = 1.0;
+      inactive_opacity = 1.0;
+      fullscreen_opacity = 1.0;
+
+      dim_inactive = true;
+      dim_strength = 0.1;
+
+      drop_shadow = true;
+      shadow_range = 4;
+      shadow_render_power = 1;
+      # col.shadow = "rgb (cba7f7)";
+      # col.shadow_inactive = "0x50000000";
+
+      blur = {
+        enabled = true;
+        size = 5;
+        passes = 1;
+        ignore_opacity = true;
+        new_optimizations = true;
+      };
+    };
+    input = {
+      kb_layout = "us";
+      # kb_variant=
+      # kb_model=
+      kb_options = "grp:alt_shift_toggle";
+      # kb_rules=
+      repeat_rate = 50;
+      repeat_delay = 300;
+      numlock_by_default = 0;
+      left_handed = 0;
+      follow_mouse = 1;
+      float_switch_override_focus = 0;
+
+      touchpad = {
+        disable_while_typing = 0;
+        natural_scroll = 1;
+        clickfinger_behavior = 0;
+        middle_button_emulation = 1;
+        tap-to-click = 1;
+        drag_lock = 0;
+      };
+    };
+    cursor = { no_hardware_cursors = true; };
+    exec-once = [ "waybar &" "dunst &" "nm-applet --indicator &" ];
+    monitor = [ "eDP-1,1920x1080@144,auto,1" ",1280x1024,auto,1" ];
+    bind = [
+      "$mod, F, exec, brave"
+      "$mod, F1, focusmonitor, +1"
+      "$mod, F2, focusmonitor, -1"
+      "$mod, Return, exec, $term"
+      "$mod SHIFT, Q, killactive, "
+      "$mod SHIFT, F, togglefloating,"
+      "$mod, F, fullscreen"
+      "$mod, Q, killactive,"
+      "$mod, T, exec, $files"
+      "$mod, tab, workspace, m+1"
+      "$mod SHIFT, tab, workspace, m-1"
+      ", Print, exec, grimblast copy area"
+      "$mod, left, movefocus, l"
+      "$mod, right, movefocus, r"
+      "$mod, up, movefocus, u"
+      "$mod, down, movefocus, d"
+      "$mod, mouse_down, workspace, e+1"
+      "$mod, mouse_up, workspace, e-1"
+      "$mod, mouse:272, movewindow"
+      "$mod, Print, exec, hyprshot -m output -o ~/Pictures/Screenshots"
+    ] ++ (
+      # workspaces
+      # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+      builtins.concatLists (builtins.genList (x:
+        let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
+        in [
+          "$mod, ${ws}, workspace, ${toString (x + 1)}"
+          "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+        ]) 10));
+  };
 
   programs.git = {
     enable = true;
@@ -107,7 +160,9 @@
       enable = true;
       plugins = [
         { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
+        {
+          name = "zsh-users/zsh-syntax-highlighting";
+        } # Simple plugin installation
       ];
     };
 
@@ -117,7 +172,6 @@
       update = "sudo nixos-rebuild switch --flake ~/.dotfiles";
     };
   };
-
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -145,6 +199,8 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    networkmanagerapplet
+    hyprshot
     waybar
     dunst
     libnotify
@@ -208,8 +264,6 @@
     guacamole-server
     guacamole-client
 
-
-
     # programming languages
     python3
     nodejs_22
@@ -217,7 +271,6 @@
     rustup
     zig
     gcc
-
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
