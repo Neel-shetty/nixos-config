@@ -19,6 +19,9 @@
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
+    "$term" = "kgx";
+    "$browser" = "brave";
+    "$files" = "thunar";
     env = [
     "LIBVA_DRIVER_NAME=nvidia"
     "XDG_SESSION_TYPE=wayland"
@@ -31,7 +34,28 @@
     bind =
       [
         "$mod, F, exec, firefox"
+        "$mod, F1, focusmonitor, +1"
+        "$mod, F2, focusmonitor, -1"
+        "$mod, Return, exec, $term"
+        "$mod SHIFT, Q, killactive, "
+        "$mainMod SHIFT, F, togglefloating,"
+        "$mainMod, F, fullscreen"
+        "$mainMod, Q, killactive,"
+        "$mainMod, T, exec, $files"
+        "$mainMod, tab, workspace, m+1"
+        "$mainMod SHIFT, tab, workspace, m-1"
+        "ALT, tab, cyclenext,"
+        "ALT SHIFT, tab, bringactivetotop,"
         ", Print, exec, grimblast copy area"
+        "$mainMod, left, movefocus, l"
+        "$mainMod, right, movefocus, r"
+        "$mainMod, up, movefocus, u"
+        "$mainMod, down, movefocus, d"
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
+        "$mainMod, mouse:272, movewindow"
+        "$mainMod, mouse:273, resizewindow"
+        "$mainMod, Print, exec, hyprshot -m output -o ~/Pictures/Screenshots"
       ]
       ++ (
         # workspaces
@@ -117,6 +141,13 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    waybar
+    dunst
+    libnotify
+    wl-clipboard
+    wlogout
+    rofi-wayland
+    kitty
     virt-manager
     vscode
     htop
