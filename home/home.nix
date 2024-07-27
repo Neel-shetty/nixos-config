@@ -24,26 +24,6 @@
 
   
   
-
-  programs.git = {
-    enable = true;
-    userName = "Neel Narayan Shetty";
-    userEmail = "neelnarayanshetty@gmail.com";
-  };
-  programs.chromium = {
-    enable = true;
-    package = pkgs.brave;
-    extensions = [
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
-      { id = "ponfpcnoihfmfllpaingbgckeeldkhle"; } # enhancer for youtube
-      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # dark reader
-      { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
-      { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock
-      { id = "gebbhagfogifgggkldgodflihgfeippi"; } # return youtube dislikes
-    ];
-  };
-
-  
   
   programs.nix-index-database.comma.enable = true;
   home.pointerCursor = {
