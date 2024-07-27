@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -7,7 +7,7 @@
     syntaxHighlighting.enable = true;
     plugins = [{
       name = "powerlevel10k-config";
-      src = ./.;
+      src = lib.cleanSource ./.;
       file = ".p10k.zsh";
     }];
     zplug = {
@@ -24,7 +24,7 @@
     };
     shellAliases = {
       ll = "ls -l";
-      la = "ls -a";
+      la = "ls -la";
       e = "exit";
       sex = "neofetch";
       c = "clear";
