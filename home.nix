@@ -101,8 +101,9 @@
     cursor = { no_hardware_cursors = true; };
     exec-once = [ "waybar &" "dunst &" "nm-applet --indicator &" ];
     monitor = [ "eDP-1,1920x1080@144,auto,1" ",1280x1024,auto,1" ];
+
     bind = [
-      "$mod, F, exec, brave"
+      "$mod, B, exec, brave"
       "$mod, F1, focusmonitor, +1"
       "$mod, F2, focusmonitor, -1"
       "$mod, Return, exec, $term"
@@ -113,7 +114,7 @@
       "$mod, T, exec, $files"
       "$mod, tab, workspace, m+1"
       "$mod SHIFT, tab, workspace, m-1"
-      ", Print, exec, grimblast copy area"
+      ", Print, exec, hyprshot -m region -o ~/Pictures/Screenshots"
       "$mod, left, movefocus, l"
       "$mod, right, movefocus, r"
       "$mod, up, movefocus, u"
@@ -122,6 +123,7 @@
       "$mod, mouse_up, workspace, e-1"
       "$mod, mouse:272, movewindow"
       "$mod, Print, exec, hyprshot -m output -o ~/Pictures/Screenshots"
+      "$mod, S, exec, hyprshot -m region -o ~/Pictures/Screenshots"
     ] ++ (
       # workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
@@ -131,6 +133,138 @@
           "$mod, ${ws}, workspace, ${toString (x + 1)}"
           "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
         ]) 10));
+  };
+  programs.waybar = {
+    enable = true;
+    style = ''
+      @define-color rosewater #f5e0dc;
+      @define-color flamingo #f2cdcd;
+      @define-color pink #f5c2e7;
+      @define-color mauve #cba6f7;
+      @define-color red #f38ba8;
+      @define-color maroon #eba0ac;
+      @define-color peach #fab387;
+      @define-color yellow #f9e2af;
+      @define-color green #a6e3a1;
+      @define-color teal #94e2d5;
+      @define-color sky #89dceb;
+      @define-color sapphire #74c7ec;
+      @define-color blue #89b4fa;
+      @define-color lavender #b4befe;
+      @define-color text #cdd6f4;
+      @define-color subtext1 #bac2de;
+      @define-color subtext0 #a6adc8;
+      @define-color overlay2 #9399b2;
+      @define-color overlay1 #7f849c;
+      @define-color overlay0 #6c7086;
+      @define-color surface2 #585b70;
+      @define-color surface1 #45475a;
+      @define-color surface0 #313244;
+      @define-color base #1e1e2e;
+      @define-color mantle #181825;
+      @define-color crust #11111b;
+      * {
+          /* reference the color by using @color-name */
+          color: @text;
+        }
+
+        window#waybar {
+          /* you can also GTK3 CSS functions! */
+          background-color: shade(@base, 0.9);
+          border: 2px solid alpha(@crust, 0.3);
+        }
+    '';
+    settings = [{
+      height = 30;
+      layer = "top";
+      position = "top";
+      tray = { spacing = 10; };
+      modules-center = [ "sway/window" ];
+      modules-left = [ "hyprland/workspaces" ];
+      modules-right = [
+        "pulseaudio"
+        "network"
+        "cpu"
+        "memory"
+        "temperature"
+        "clock"
+        "tray"
+        "power"
+      ];
+      battery = {
+        format = "{capacity}% {icon}";
+        format-alt = "{time} {icon}";
+        format-charging = "{capacity}% ";
+        format-icons = [ "" "" "" "" "" ];
+        format-plugged = "{capacity}% ";
+        states = {
+          critical = 15;
+          warning = 30;
+        };
+      };
+      clock = {
+        format-alt = "{:%Y-%m-%d}";
+        tooltip-format = "{:%Y-%m-%d | %H:%M}";
+      };
+      cpu = {
+        format = "{usage}% ";
+        tooltip = false;
+      };
+      memory = { format = "{}% "; };
+      network = {
+        interval = 1;
+        format-alt = "{ifname}: {ipaddr}/{cidr}";
+        format-disconnected = "Disconnected ⚠";
+        format-ethernet =
+          "{ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
+        format-linked = "{ifname} (No IP) ";
+        format-wifi = "{essid} ({signalStrength}%) ";
+      };
+      pulseaudio = {
+        format = "{volume}% {icon} {format_source}";
+        format-bluetooth = "{volume}% {icon} {format_source}";
+        format-bluetooth-muted = " {icon} {format_source}";
+        format-icons = {
+          car = "";
+          default = [ "" "" "" ];
+          handsfree = "";
+          headphones = "";
+          headset = "";
+          phone = "";
+          portable = "";
+        };
+        format-muted = " {format_source}";
+        format-source = "{volume}% ";
+        format-source-muted = "";
+        on-click = "pavucontrol";
+      };
+      "sway/mode" = { format = ''<span style="italic">{}</span>''; };
+      "hyprland/workspaces" = {
+        active-only = false;
+        "all-outputs" = true;
+        "format" = "{icon}";
+        "show-special" = false;
+        "on-click" = "activate";
+        "on-scroll-up" = "hyprctl dispatch workspace e+1";
+        "on-scroll-down" = "hyprctl dispatch workspace e-1";
+        "persistent-workspaces" = {
+          "1" = [ ];
+          "2" = [ ];
+          "3" = [ ];
+          "4" = [ ];
+          "5" = [ ];
+        };
+        "format-icons" = {
+          "active" = "";
+          "default" = "";
+        };
+      };
+      temperature = {
+        critical-threshold = 80;
+        format = "{temperatureC}°C {icon}";
+        format-icons = [ "" "" "" ];
+      };
+    }];
   };
 
   programs.git = {
@@ -159,20 +293,27 @@
     zplug = {
       enable = true;
       plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
-        {
-          name = "zsh-users/zsh-syntax-highlighting";
-        } # Simple plugin installation
+        { name = "zsh-users/zsh-autosuggestions"; }
+        { name = "zsh-users/zsh-syntax-highlighting"; }
       ];
     };
-
     shellAliases = {
       ll = "ls -l";
       la = "ls -a";
+      e = "exit";
+      sex = "neofetch";
+      c = "clear";
+      h = "htop";
+      pd = "cd ..";
+      anime = "cd /media/neel/data/jellyfin/anime";
+      ssh = "kitten ssh";
+      size = "du -sh .";
+      files = "thunar .";
+      b = "bashtop";
       update = "sudo nixos-rebuild switch --flake ~/.dotfiles";
     };
   };
-
+  programs.nix-index-database.comma.enable = true;
   home.pointerCursor = {
     gtk.enable = true;
     # x11.enable = true;
@@ -180,9 +321,20 @@
     name = "Bibata-Modern-Classic";
     size = 16;
   };
+  # programs.kitty = {
+  #   enable = true;
+  #   # theme = "Catppuccin-Mocha";
+  # };
 
   gtk = {
     enable = true;
+    # catppuccin = {
+    #   enable = true;
+    #   flavor = "mocha";
+    #   accent = "pink";
+    #   size = "standard";
+    #   tweaks = [ "normal" ];
+    # };
 
     theme = {
       package = pkgs.flat-remix-gtk;
@@ -199,6 +351,7 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    eog
     networkmanagerapplet
     hyprshot
     waybar
@@ -214,6 +367,11 @@
     xfce.thunar
     xfce.thunar-archive-plugin
     xfce.thunar-media-tags-plugin
+    xfce.exo # thunar "open terminal here"
+    xfce.thunar-volman
+    xfce.tumbler # thunar thumbnails
+    xfce.xfce4-volumed-pulse
+    xfce.xfconf # thunar save settings
     webcord-vencord
     wine
     lutris
