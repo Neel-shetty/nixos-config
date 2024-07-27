@@ -39,7 +39,11 @@
       preserve_split = "yes";
       special_scale_factor = 0.8;
     };
-    # master = [ "new_is_master = 0" "new_on_top = 0" "mfact = 0.5" ];
+    master = {
+      new_status = "master";
+      new_on_top = 0;
+      mfact = 0.5;
+    };
     general = {
       sensitivity = 2.5;
       apply_sens_to_raw = 1;
@@ -48,10 +52,48 @@
       border_size = 1;
       resize_on_border = true;
     };
-    # group = {
-    #   col.border_active = "rgba (7 aa2f7aa)";
-    #   groupbar = { col.active = "rgba (7 aa2f7aa)"; };
-    # };
+    group = {
+      "col.border_active" = "rgba(7aa2f7aa)";
+      groupbar = { "col.active" = "rgba(7aa2f7aa)"; };
+    };
+    windowrule = [
+      "float, pavucontrol"
+      "float, org.kde.polkit-kde-authentication-agent-1"
+      "float, nm-connection-editor|blueman-manager"
+      "float, nwg-look|qt5ct|mpv"
+      "float, onedriver|onedriver-launcher"
+      "float, viewnior|swayimg"
+      "float, rofi"
+      "float, gnome-system-monitor"
+      "float, yad"
+      "workspace 6 silent,^(gamescope)$"
+      "center,^(pavucontrol)"
+    ];
+    windowrulev2 = [
+      "float, class:^([Vv]iewnior)$"
+      "workspace 1, class:^(Signal)$"
+      "workspace 1, class:^(telegram)$"
+      "workspace 2, class:^(firefox)$"
+      "workspace 2, class:^(Brave-browser)$"
+      "workspace 2, class:^(Firefox-esr)$"
+      "workspace 3, class:^([Tt]hunar)$"
+      "workspace 4, class:^(org.jellyfin.jellyfinmediaplayer)$"
+      "workspace 5, class:^(org.qbittorrent.qBittorrent)$"
+      "workspace 6, class:^([Ss]team)$,title:^([Ss]team)$"
+      "workspace 6, class:^(lutris)$"
+      "workspace 7, class:^(discord)$"
+      "workspace 7, class:^(WebCord)$"
+      "workspace 9 silent, class:^(audacious)$"
+      "opacity 0.9 0.6, class:^([Rr]ofi)$"
+      "opacity 1 0.7, class:^(firefox)$"
+      "opacity 0.9 0.7, class:^([Tt]hunar)$"
+      "opacity 0.8 0.6, class:^(pcmanfm-qt)$"
+      "opacity 0.9 0.7, class:^(gedit)$"
+      "opacity 0.8 0.7, class:^(kitty)$"
+      "opacity 0.9 0.7, class:^(codium-url-handler)$"
+      "opacity 0.9 0.7, class:^(VSCodium)$"
+      "opacity 0.9 0.7, class:^(yad)$"
+    ];
     decoration = {
       rounding = 8;
 
@@ -65,8 +107,8 @@
       drop_shadow = true;
       shadow_range = 4;
       shadow_render_power = 1;
-      # col.shadow = "rgb (cba7f7)";
-      # col.shadow_inactive = "0x50000000";
+      "col.shadow" = "rgb(cba7f7)";
+      "col.shadow_inactive" = "0x50000000";
 
       blur = {
         enabled = true;
@@ -75,6 +117,34 @@
         ignore_opacity = true;
         new_optimizations = true;
       };
+    };
+    animations = {
+      enabled = "yes";
+      # enabled = no
+
+      bezier = [
+        "myBezier, 0.05, 0.9, 0.1, 1.05"
+        "linear, 0.0, 0.0, 1.0, 1.0"
+        "wind, 0.05, 0.9, 0.1, 1.05"
+        "winIn, 0.1, 1.1, 0.1, 1.1"
+        "winOut, 0.3, -0.3, 0, 1"
+        "slow, 0, 0.85, 0.3, 1"
+        "overshot, 0.7, 0.6, 0.1, 1.1"
+        "bounce, 1.1, 1.6, 0.1, 0.85"
+        "sligshot, 1, -1, 0.15, 1.25"
+        "nice, 0, 6.9, 0.5, -4.20"
+      ];
+
+      animation = [
+        "windowsIn, 1, 5, slow, popin"
+        "windowsOut, 1, 5, winOut, popin"
+        "windowsMove, 1, 5, wind, slide"
+        "border, 1, 10, linear"
+        "borderangle, 1, 100, linear, loop "
+        "fade, 1, 5, overshot"
+        "workspaces, 1, 5, wind"
+        "windows, 1, 5, bounce, popin"
+      ];
     };
     input = {
       kb_layout = "us";
@@ -98,13 +168,44 @@
         drag_lock = 0;
       };
     };
+    gestures = {
+      workspace_swipe = 1;
+      workspace_swipe_fingers = 3;
+      workspace_swipe_distance = 200;
+      workspace_swipe_invert = 1;
+      workspace_swipe_min_speed_to_force = 30;
+      workspace_swipe_cancel_ratio = 0.5;
+      workspace_swipe_create_new = 1;
+      workspace_swipe_forever = 1;
+    };
+    misc = {
+      disable_hyprland_logo = true;
+      disable_splash_rendering = true;
+      mouse_move_enables_dpms = true;
+      vrr = 2;
+      enable_swallow = true;
+      no_direct_scanout = true; # for fullscreen games
+      focus_on_activate = false;
+      swallow_regex = "^(kitty)$";
+    };
+
+    binds = {
+      workspace_back_and_forth = 1;
+      allow_workspace_cycles = 1;
+      pass_mouse_when_bound = 0;
+    };
     cursor = { no_hardware_cursors = true; };
-    exec-once = [ "waybar &" "dunst &" "nm-applet --indicator &" ];
+    exec-once = [
+      "waybar &"
+      "dunst &"
+      "nm-applet --indicator &"
+      "wl-paste --watch cliphist store"
+    ];
     monitor = [ "eDP-1,1920x1080@144,auto,1" ",1280x1024,auto,1" ];
 
     bind = [
       "$mod, B, exec, brave"
-      "$mod, D, exec, rofi -show drun"
+      "$mod, D, exec, pkill rofi || rofi -show drun -modi run,drun,filebrowser"
       "$mod, F1, focusmonitor, +1"
       "$mod, F2, focusmonitor, -1"
       "$mod, Return, exec, $term"
@@ -113,6 +214,7 @@
       "$mod, F, fullscreen"
       "$mod, Q, killactive,"
       "$mod, T, exec, $files"
+      "CTRL ALT, P, exec, wlogout"
       "$mod, tab, workspace, m+1"
       "$mod SHIFT, tab, workspace, m-1"
       ", Print, exec, hyprshot -m region -o ~/Pictures/Screenshots"
@@ -125,6 +227,26 @@
       "$mod, mouse:272, movewindow"
       "$mod, Print, exec, hyprshot -m output -o ~/Pictures/Screenshots"
       "$mod, S, exec, hyprshot -m region -o ~/Pictures/Screenshots"
+      "$mod CTRL, D, layoutmsg, removemaster"
+      "$mod, Escape, exec, hyprctl kill"
+      "$mod, I, layoutmsg, addmaster"
+      "$mod, J, layoutmsg, cyclenext"
+      "$mod, K, layoutmsg, cycleprev"
+      "$mod, M, exec, hyprctl dispatch splitratio 0.3"
+      "$mod, P, pseudo, # dwindle"
+      "$mod CTRL, Return, layoutmsg, swapwithmaster"
+      "$mod, V, exec, pkill rofi || cliphist list | rofi -dmenu -config ~/.config/rofi/config-long.rasi | cliphist decode | wl-copy"
+      "$mod, G, togglegroup"
+      "$mod, tab, workspace, m+1"
+      "$mod SHIFT, tab, workspace, m-1"
+      "ALT, tab, cyclenext,"
+      "ALT SHIFT, tab, bringactivetotop, "
+      ", xf86audioraisevolume, exec, pamixer --allow-boost -i 5 && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low $(pamixer --get-volume) "
+      ", xf86audiolowervolume, exec, pamixer --allow-boost -d 5 && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low $(pamixer --get-volume) "
+      ", xf86audiomute, exec, pamixer -t && notify-send $(pamixer --get-volume) "
+      ''
+        , xf86AudioMicMute, exec, pamixer --default-source --get-mute | grep -q false && pamixer --default-source -m && notify-send "Mic Switched OFF" || pamixer --default-source -u && notify-send "Mic Switched ON"''
+
     ] ++ (
       # workspaces
       # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
@@ -363,7 +485,11 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    pavucontrol
+    viewnior
     eog
+    direnv
+    pamixer
     networkmanagerapplet
     hyprshot
     waybar
@@ -387,6 +513,7 @@
     webcord-vencord
     wine
     lutris
+    cliphist
     steam
     libreoffice
     gimp
