@@ -104,6 +104,7 @@
 
     bind = [
       "$mod, B, exec, brave"
+      "$mod, D, exec, rofi -show drun"
       "$mod, F1, focusmonitor, +1"
       "$mod, F2, focusmonitor, -1"
       "$mod, Return, exec, $term"
@@ -288,6 +289,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    autocd = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     zplug = {
@@ -295,6 +297,11 @@
       plugins = [
         { name = "zsh-users/zsh-autosuggestions"; }
         { name = "zsh-users/zsh-syntax-highlighting"; }
+        {
+          name = "romkatv/powerlevel10k";
+          tags = [ "as:theme" "depth:1" ];
+        } # Installations with additional options. For the list of options, please refer to Zplug README.
+
       ];
     };
     shellAliases = {
