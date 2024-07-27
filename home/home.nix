@@ -246,6 +246,43 @@
       ", xf86audiomute, exec, pamixer -t && notify-send $(pamixer --get-volume) "
       ''
         , xf86AudioMicMute, exec, pamixer --default-source --get-mute | grep -q false && pamixer --default-source -m && notify-send "Mic Switched OFF" || pamixer --default-source -u && notify-send "Mic Switched ON"''
+      ", xf86MonBrightnessDown, exec, brightnessctl set 10%- && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low $(brightnessctl -m | cut -d, -f4)"
+      ", xf86MonBrightnessUp, exec, brightnessctl set +10% && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low $(brightnessctl -m | cut -d, -f4) "
+      # Resize (vim style)
+      "$mod SHIFT, H, resizeactive, -50 0"
+      "$mod SHIFT, L, resizeactive, 50 0"
+      "$mod SHIFT, K, resizeactive, 0 -50"
+      "$mod SHIFT, J, resizeactive, 0 50"
+      "$mod SHIFT, left, resizeactive, -50 0"
+      "$mod SHIFT, right, resizeactive, 50 0"
+      "$mod SHIFT, up, resizeactive, 0 -50"
+      "$mod SHIFT, down, resizeactive, 0 50"
+
+      # Move (vim style)
+      "$mod CTRL, H, movewindow, l"
+      "$mod CTRL, L, movewindow, r"
+      "$mod CTRL, K, movewindow, u"
+      "$mod CTRL, J, movewindow, d"
+      "$mod CTRL, left, movewindow, l"
+      "$mod CTRL, right, movewindow, r"
+      "$mod CTRL, up, movewindow, u"
+      "$mod CTRL, down, movewindow, d"
+
+      # Move focus with mod + arrow keys
+      "$mod, left, movefocus, l"
+      "$mod, right, movefocus, r"
+      "$mod, up, movefocus, u"
+      "$mod, down, movefocus, d"
+
+      # Special workspace
+      "$mod SHIFT, U, movetoworkspace, special"
+      "$mod, U, togglespecialworkspace,"
+
+      # scroll to change workspace with mod + scroll
+      "$mod, mouse_down, workspace, e+1"
+      "$mod, mouse_up, workspace, e-1"
+      "$mod, period, workspace, e+1"
+      "$mod, comma, workspace, e-1"
 
     ] ++ (
       # workspaces
@@ -254,8 +291,15 @@
         let ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
         in [
           "$mod, ${ws}, workspace, ${toString (x + 1)}"
-          "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+          "$mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
         ]) 10));
+    bindl = [''
+      ,switch:Lid Switch, exec, hyprctl keyword monitor "eDP-1, preferred, auto, 1"
+    ''];
+    bindm = [
+      "$mod, mouse:272, movewindow"
+      "$mod, mouse:273, resizewindow"
+    ];
   };
   programs.waybar = {
     enable = true;
@@ -486,6 +530,7 @@
   home.packages = with pkgs; [
     signal-desktop
     pavucontrol
+    brightnessctl
     viewnior
     eog
     direnv
