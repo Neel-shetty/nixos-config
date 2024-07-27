@@ -29,7 +29,7 @@
             home-manager.useUserPackages = true;
             home-manager.users.${username} = {
               imports = [
-                ./home.nix
+                ./home/home.nix
                 inputs.catppuccin.homeManagerModules.catppuccin
                 inputs.nix-index-database.hmModules.nix-index
               ];

@@ -292,6 +292,11 @@
     autocd = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    plugins = [{
+      name = "powerlevel10k-config";
+      src = ./.;
+      file = ".p10k.zsh";
+    }];
     zplug = {
       enable = true;
       plugins = [
