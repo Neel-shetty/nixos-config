@@ -212,6 +212,7 @@
     neovim
     git
     brave
+    cudatoolkit
     zsh
     appimage-run
   ];

@@ -16,6 +16,8 @@
     ./modules/browser.nix
   ];
 
+  # inputs.blender-bin.packages.x86_64-linux.blender_4_1.enable = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -23,6 +25,7 @@
     cava
     swww
     swaylock
+    blender
     power-profiles-daemon
     xdotool
     pavucontrol
@@ -137,7 +140,8 @@
   # plain files is through 'home.file'.
   home.file = {
     ".config/btop/btop.conf".source = ./modules/btop/btop.conf;
-    ".config/btop/themes/catppuccin-mocha.theme".source = ./modules/btop/catppuccin-mocha.theme;
+    ".config/btop/themes/catppuccin-mocha.theme".source =
+      ./modules/btop/catppuccin-mocha.theme;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.

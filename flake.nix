@@ -9,6 +9,7 @@
     catppuccin.url = "github:catppuccin/nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    # blender-bin.url = "github:edolstra/nix-warez?dir=blender";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -36,18 +37,28 @@
             };
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
+          # ({ config, pkgs, ... }: {
+          #   nixpkgs.overlays = [ inputs.blender-bin.overlays.default ];
+          #   # This line can either be here or in configuration.nix
+          #   environment.systemPackages = with pkgs; [ blender_4_1 ];
+          # })
         ];
       };
-      # homeConfigurations.${username} =
-      #   inputs.home-manager.lib.homeManagerConfiguration {
-      #     inherit pkgs;
+      homeConfigurations.${username} =
+        inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-      #     modules = [
-      #       inputs.nix-index-database.hmModules.nix-index
-      #       # optional to also wrap and install comma
-      #       { programs.nix-index-database.comma.enable = true; }
-      #     ];
-      #   };
+          modules = [
+            inputs.nix-index-database.hmModules.nix-index
+            # optional to also wrap and install comma
+            {
+              programs.nix-index-database.comma.enable = true;
+              inputs.blender-bin.packages.x86_64-linux.blender_4_1.enable =
+                true;
+
+            }
+          ];
+        };
 
     };
 }

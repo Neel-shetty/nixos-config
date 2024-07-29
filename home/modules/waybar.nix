@@ -54,7 +54,7 @@
       }
 
       #workspaces button.active {
-        color: @sky;
+        color: @maroon;
         border-radius: 1rem;
       }
 
