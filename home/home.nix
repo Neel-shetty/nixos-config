@@ -20,6 +20,7 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    cava
     swww
     swaylock
     power-profiles-daemon
