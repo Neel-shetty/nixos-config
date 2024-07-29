@@ -20,6 +20,9 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    swww
+    swaylock
+    power-profiles-daemon
     xdotool
     pavucontrol
     brightnessctl

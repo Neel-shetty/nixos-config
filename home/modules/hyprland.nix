@@ -1,4 +1,23 @@
 { config, pkgs, ... }: {
+
+  # services.hyprpaper = {
+  #   enable = true;
+  #  settings = {
+  #     ipc = "on";
+  #     splash = false;
+  #     splast_offset = 2.0;
+  #     preload = [
+  #       "~/Pictures/wallpapers/gojo.png"
+  #       "~/Pictures/wallpapers/makima-darkb.png"
+  #       # "~/Pictures/wallpapers/zero-two.png"
+  #     ];
+  #     wallpaper = [
+  #       "eDP-1, ~/Pictures/wallpapers/gojo.png"
+  #       "HDMI-A-1, ~/Pictures/wallpapers/makima-darkb.png"
+  #     ];
+  #   };
+  # };
+
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
@@ -182,6 +201,7 @@
     exec-once = [
       "waybar &"
       "dunst &"
+      "swww-daemon &"
       "nm-applet --indicator &"
       "wl-paste --watch cliphist store"
     ];
