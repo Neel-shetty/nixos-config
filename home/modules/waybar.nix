@@ -86,6 +86,10 @@
         margin-left: 1rem;
       }
 
+      #power-profiles-daemon {
+        color: @pink;
+      }
+
       #network {
         color: @lavender;
         border-radius: 0px 1rem 1rem 0px;
