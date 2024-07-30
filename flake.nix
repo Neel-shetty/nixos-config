@@ -53,8 +53,8 @@
             # optional to also wrap and install comma
             {
               programs.nix-index-database.comma.enable = true;
-              inputs.blender-bin.packages.x86_64-linux.blender_4_1.enable =
-                true;
+              # inputs.blender-bin.packages.x86_64-linux.blender_4_1.enable =
+                # true;
 
             }
           ];

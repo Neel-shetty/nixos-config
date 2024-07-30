@@ -57,10 +57,10 @@
     ];
     windowrulev2 = [
       "float, class:^([Vv]iewnior)$"
-      "workspace 1, class:^(Signal)$"
-      "workspace 1, class:^(telegram)$"
+      "workspace 1, class:^(signal)$"
+      "workspace 1, class:^(org.telegram.desktop)$"
       "workspace 2, class:^(firefox)$"
-      "workspace 2, class:^(Brave-browser)$"
+      "workspace 2, class:^(brave-browser)$"
       "workspace 2, class:^(Firefox-esr)$"
       "workspace 3, class:^([Tt]hunar)$"
       "workspace 4, class:^(org.jellyfin.jellyfinmediaplayer)$"

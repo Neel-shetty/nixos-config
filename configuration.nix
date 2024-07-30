@@ -52,7 +52,16 @@
     modesetting.enable = true;
     prime.nvidiaBusId = "PCI:1:0:0";
     prime.amdgpuBusId = "PCI:5:0:0";
-    prime.sync.enable = true;
+
+    # better performance but high battery usage
+    # prime.sync.enable = true;
+
+    # Enable offloading. This allows you to run specific applications on the
+    # Nvidia GPU, while the rest of the system uses the integrated GPU.
+    prime.offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
@@ -228,7 +237,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
