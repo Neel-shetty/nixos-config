@@ -22,8 +22,10 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    fzf
     gnumake
     unzip
+    zip
     ripgrep
     cava
     swww

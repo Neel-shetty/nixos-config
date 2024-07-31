@@ -23,17 +23,18 @@
 
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
+        system = "x86_64-linux";
         modules = [
           ./configuration.nix
           inputs.catppuccin.nixosModules.catppuccin
           inputs.home-manager.nixosModules.home-manager
+          inputs.sops-nix.nixosModules.sops
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${username} = {
               imports = [
                 ./home/home.nix
-                inputs.sops-nix.nixosModules.sops
                 inputs.catppuccin.homeManagerModules.catppuccin
                 inputs.nix-index-database.hmModules.nix-index
               ];
@@ -57,7 +58,7 @@
             {
               programs.nix-index-database.comma.enable = true;
               # inputs.blender-bin.packages.x86_64-linux.blender_4_1.enable =
-                # true;
+              # true;
 
             }
           ];
