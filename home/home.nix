@@ -22,6 +22,9 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    gnumake
+    unzip
+    ripgrep
     cava
     swww
     swaylock
@@ -122,9 +125,19 @@
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    (pkgs.writeShellScriptBin "gacp" ''
+      if [ -z "$1" ]; then
+        ${pkgs.figlet}/bin/figlet "No Commit Message"
+        echo "Using \"Updates\" as commit message instead"
+        git add .
+        git commit -m "Updates"
+        git push
+      else
+        git add .
+        git commit -m "$1"
+        git push
+      fi
+    '')
   ];
 
   programs.nix-index-database.comma.enable = true;
