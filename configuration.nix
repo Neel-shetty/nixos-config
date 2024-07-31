@@ -25,8 +25,8 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
   # This is the actual specification of the secrets.
-  sops.secrets.example-key = {};
-  sops.secrets."myservice/my_subdir/my_secret" = {};
+  sops.secrets.example_key = {};
+  # sops.secrets."myservice/my_subdir/my_secret" = {};
 
   # Enable OpenGL
   hardware.graphics = { enable = true; };
@@ -241,6 +241,7 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     neovim
+    sops
     git
     brave
     cudatoolkit
