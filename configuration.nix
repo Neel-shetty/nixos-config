@@ -16,6 +16,17 @@
       [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  # This will automatically import SSH keys as age keys
+  # sops.age.sshKeyPaths = [ "/home/neel/.ssh/id_ed25519" ];
+  sops.age.keyFile = "/home/neel/.config/sops/age/keys.txt";
+  # This will generate a new key if the key specified above does not exist
+  sops.age.generateKey = true;
+  # This is the actual specification of the secrets.
+  sops.secrets.example-key = {};
+  sops.secrets."myservice/my_subdir/my_secret" = {};
+
   # Enable OpenGL
   hardware.graphics = { enable = true; };
   programs.appimage.binfmt = true;
@@ -42,6 +53,16 @@
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
   services.power-profiles-daemon.enable = true;
+  services.cloudflared = {
+    enable = true;
+    tunnels = {
+      "28c78bae-1b14-4e04-9a4e-8ddc4f909e3c" = {
+        credentialsFile =
+          "/home/neel/.cloudflared/28c78bae-1b14-4e04-9a4e-8ddc4f909e3c.json";
+        default = "http_status:404";
+      };
+    };
+  };
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];

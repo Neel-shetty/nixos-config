@@ -1,0 +1,12 @@
+keys:
+  - &admin_neel age1khj8dly8wczp9k2x5qz544fx9q94tm3ugey98myc903fetdt2shqcldp9p
+  - &laptop age1va93qlsvu6ugzejv5drpknl94t537ukwgtzz5zmlzyc7fh0tagksr2jq9x
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *admin_neel
+  - path_regex: secrets/laptop/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *admin_neel

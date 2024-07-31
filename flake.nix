@@ -9,6 +9,8 @@
     catppuccin.url = "github:catppuccin/nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     # blender-bin.url = "github:edolstra/nix-warez?dir=blender";
   };
 
@@ -31,6 +33,7 @@
             home-manager.users.${username} = {
               imports = [
                 ./home/home.nix
+                inputs.sops-nix.nixosModules.sops
                 inputs.catppuccin.homeManagerModules.catppuccin
                 inputs.nix-index-database.hmModules.nix-index
               ];
