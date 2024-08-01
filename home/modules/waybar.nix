@@ -223,10 +223,10 @@
       };
       network = {
         interval = 1;
-        format-alt = "{ifname}: {ipaddr}/{cidr}";
+        format-alt = "󰁟 {bandwidthUpBits}";
         format-disconnected = "Disconnected ⚠";
         format-ethernet =
-          "{ifname}: {ipaddr}/{cidr}   󰁟: {bandwidthUpBits} down: {bandwidthDownBits}";
+          "{ifname}: {ipaddr}/{cidr}  󰁟 {bandwidthUpBits} 󰁇 {bandwidthDownBits}";
         format-linked = "{ifname} (No IP) ";
         format-wifi = "󰁇 {bandwidthDownBits}";
       };
