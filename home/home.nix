@@ -15,7 +15,7 @@
     ./modules/kitty.nix
     ./modules/browser.nix
     ./modules/neovim/neovim.nix
-    ./modules/wlogout/wlogout.nix
+    # ./modules/wlogout/wlogout.nix
   ];
 
   # inputs.blender-bin.packages.x86_64-linux.blender_4_1.enable = true;
