@@ -24,6 +24,8 @@
   home.packages = with pkgs; [
     signal-desktop
     fzf
+    bat
+    zoxide
     gnumake
     unzip
     zip
