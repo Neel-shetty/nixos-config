@@ -36,6 +36,8 @@
       files = "thunar .";
       b = "bashtop";
       update = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+      cd = "z";
     };
+    initExtra = "eval \"$(zoxide init zsh)\"";
   };
 }
