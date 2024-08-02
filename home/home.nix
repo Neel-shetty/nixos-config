@@ -14,6 +14,7 @@
     ./modules/gtk.nix
     ./modules/kitty.nix
     ./modules/browser.nix
+    ./modules/neovim/neovim.nix
   ];
 
   # inputs.blender-bin.packages.x86_64-linux.blender_4_1.enable = true;
@@ -44,6 +45,7 @@
     waybar
     dunst
     libnotify
+    (calibre.override { unrarSupport = true; })
     wl-clipboard
     wlogout
     rofi-wayland
