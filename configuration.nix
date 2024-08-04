@@ -176,12 +176,9 @@
 
   services.displayManager.sddm = {
     enable = true;
-    theme = "catppuccin";
+    theme = "catppuccin-mocha";
     wayland.enable = true;
-    extraPackages = [
-      catppuccin-sddm
-      
-    ];
+    package = pkgs.kdePackages.sddm;
   };
   programs.hyprland = {
     enable = true;
@@ -266,6 +263,13 @@
     cudatoolkit
     zsh
     appimage-run
+    (catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "JetBrainsMono Nerd Font";
+      fontSize = "13";
+      background = "${./wallpaper.png}";
+      # loginBackground = true;
+    })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
