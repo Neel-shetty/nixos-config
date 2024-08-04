@@ -6,97 +6,89 @@
     layout = [
       {
         label = "shutdown";
-        action = "sleep 1; systemctl poweroff";
+        action = "systemctl poweroff";
         text = "Shutdown";
         keybind = "s";
       }
       {
         "label" = "reboot";
-        "action" = "sleep 1; systemctl reboot";
+        "action" = "systemctl reboot";
         "text" = "Reboot";
         "keybind" = "r";
       }
       {
         "label" = "logout";
-        "action" = "sleep 1; hyprctl dispatch exit";
+        "action" = "hyprctl dispatch exit 0";
         "text" = "Exit";
         "keybind" = "e";
       }
       {
         "label" = "suspend";
-        "action" = "sleep 1; systemctl suspend";
+        "action" = "systemctl suspend";
         "text" = "Suspend";
         "keybind" = "u";
       }
-      {
-        "label" = "lock";
-        "action" = "sleep 1; hyprlock";
-        "text" = "Lock";
-        "keybind" = "l";
-      }
-      {
-        "label" = "hibernate";
-        "action" = "sleep 1; systemctl hibernate";
-        "text" = "Hibernate";
-        "keybind" = "h";
-      }
     ];
     style = ''
-      * {
-        font-family: "JetBrainsMono NF", FontAwesome, sans-serif;
-      	background-image: none;
-      	transition: 20ms;
+           window {
+          font-family: monospace;
+          font-size: 14pt;
+          color: #cdd6f4; /* text */
+          background-color: rgba(30, 30, 46, 0.5);
       }
-      window {
-      	background-color: rgba(12, 12, 12, 0.1);
-      }
+
       button {
-      	color: #cdd6f4;
-        font-size:20px;
-        background-repeat: no-repeat;
-      	background-position: center;
-      	background-size: 25%;
-      	border-style: solid;
-      	background-color: rgba(12, 12, 12, 0.3);
-      	border: 3px solid #cdd6f4;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 25%;
+          border: none;
+          background-color: rgba(30, 30, 46, 0);
+          margin: 5px;
+          transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
       }
-      button:focus,
-      button:active,
+
       button:hover {
-        color: #a6e3a1;
-        background-color: rgba(12, 12, 12, 0.5);
-        border: 3px solid #a6e3a1;
+          background-color: rgba(49, 50, 68, 0.1);
       }
-      #logout {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("logout.png"));
+
+      button:focus {
+          background-color: #cba6f7;
+          color: #1e1e2e;
       }
-      #suspend {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("suspend.png"));
-      }
-      #shutdown {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("shutdown.png"));
-      }
-      #reboot {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("reboot.png"));
-      }
+
       #lock {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("lock.png"));
+          background-image: image(url("./lock.png"));
       }
-      #hibernate {
-      	margin: 10px;
-      	border-radius: 20px;
-      	background-image: image(url("hibernate.png"));
+      #lock:focus {
+          background-image: image(url("./lock-hover.png"));
+      }
+
+      #logout {
+          background-image: image(url("./logout.png"));
+      }
+      #logout:focus {
+          background-image: image(url("./logout-hover.png"));
+      }
+
+      #suspend {
+          background-image: image(url("./sleep.png"));
+      }
+      #suspend:focus {
+          background-image: image(url("./sleep-hover.png"));
+      }
+
+      #shutdown {
+          background-image: image(url("./power.png"));
+      }
+      #shutdown:focus {
+          background-image: image(url("./power-hover.png"));
+      }
+
+      #reboot {
+          background-image: image(url("./restart.png"));
+      }
+      #reboot:focus {
+          background-image: image(url("./restart-hover.png"));
       }
     '';
   };
