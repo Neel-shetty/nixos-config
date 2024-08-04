@@ -26,6 +26,7 @@
   home.packages = with pkgs; [
     signal-desktop
     # catppuccin-sddm
+    jdk22
     pureref
     fzf
     bat

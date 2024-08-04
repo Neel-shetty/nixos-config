@@ -57,6 +57,7 @@
     tumbler # thunar thumbnails
     xfce4-volumed-pulse
   ];
+  virtualisation.docker.enable = true;
   services.flatpak.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
@@ -240,7 +241,7 @@
   users.users.neel = {
     isNormalUser = true;
     description = "neel";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker"];
     packages = with pkgs;
       [
         #  thunderbird
