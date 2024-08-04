@@ -267,8 +267,8 @@
       flavor = "mocha";
       font = "JetBrainsMono Nerd Font";
       fontSize = "13";
-      background = "${./home/modules/sddm/shaded-landscape.png}";
-      # loginBackground = true;
+      background = "${./home/modules/sddm/shaded_landscape.png}";
+      loginBackground = true;
     })
   ];
 
