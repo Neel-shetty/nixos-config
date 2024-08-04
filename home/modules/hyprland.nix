@@ -229,6 +229,12 @@
       "$mod, mouse:272, movewindow"
       "$mod, Print, exec, hyprshot -m output -o ~/Pictures/Screenshots"
       "$mod, S, exec, hyprshot -m region -o ~/Pictures/Screenshots"
+      ''
+        $mod, W, exec, find ~/Pictures/wallpapers \( -name 'catppuccin' -o -name 'nsfw' \) -prune -o -type f \( -name '*.png' -o -name '*.jpeg' -o -name '*.jpg' -o -name '*.gif' -o -name '*.bmp' -o -name '*.tiff' -o -name '*.svg' \) -print | shuf | head -n1 | tr -d '\n' | xargs swww img -t center
+      ''
+      ''
+        ALT, W, exec, find ~/Pictures/wallpapers \( -name 'catppuccin' -o -name 'nsfw' \) -prune -o -type f \( -name '*.png' -o -name '*.jpeg' -o -name '*.jpg' -o -name '*.gif' -o -name '*.bmp' -o -name '*.tiff' -o -name '*.svg' \) -print | awk -F/ '{print $NF}' | awk '{print $0}' | rofi -dmenu -i -p "Select an image" | awk '{print $1}' | xargs -I {} sh -c 'find ~/Pictures/wallpapers -type f -name "{}" | head -n1 | xargs swww img -t center'
+      ''
       "$mod CTRL, D, layoutmsg, removemaster"
       "$mod, Escape, exec, hyprctl kill"
       "$mod, I, layoutmsg, addmaster"

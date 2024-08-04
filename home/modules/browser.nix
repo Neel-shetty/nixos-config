@@ -9,6 +9,8 @@
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
       { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock
       { id = "gebbhagfogifgggkldgodflihgfeippi"; } # return youtube dislikes
+      { id = "bkkmolkhemgaeaeggcmfbghljjjoofoh"; } # catppuccin theme brave
+      { id = "clngdbkpkpeebahjckkjfobafhncgmne"; } # stylus, catppuccin for websites
     ];
   };
 }
