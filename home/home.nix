@@ -156,7 +156,6 @@
     name = "Bibata-Modern-Classic";
     size = 16;
   };
-  security.pam.services.swaylock = {};
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
