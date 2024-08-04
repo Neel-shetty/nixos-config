@@ -25,6 +25,7 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    # catppuccin-sddm
     pureref
     fzf
     bat
@@ -165,6 +166,7 @@
     ".config/btop/btop.conf".source = ./modules/btop/btop.conf;
     ".config/btop/themes/catppuccin-mocha.theme".source =
       ./modules/btop/catppuccin-mocha.theme;
+    ".config/obs-studio/themes".source = ./modules/obs/themes;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.

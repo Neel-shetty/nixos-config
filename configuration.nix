@@ -174,7 +174,15 @@
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   xdg.portal.config.common.default = "gtk";
 
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    theme = "catppuccin";
+    wayland.enable = true;
+    extraPackages = [
+      catppuccin-sddm
+      
+    ];
+  };
   programs.hyprland = {
     enable = true;
     package =
