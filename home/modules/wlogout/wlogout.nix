@@ -1,6 +1,11 @@
-{ config, ... }:
-
-{
+{ config, pkgs, lib, ... }:
+let
+  bgImageSection = name: ''
+    #${name} {
+      background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/${name}.png"));
+    }
+  '';
+in {
   programs.wlogout = {
     enable = true;
     layout = [
@@ -27,6 +32,18 @@
         "action" = "systemctl suspend";
         "text" = "Suspend";
         "keybind" = "u";
+      }
+      {
+        "label" = "lock";
+        "action" = "swaylock";
+        "text" = "Lock";
+        "keybind" = "l";
+      }
+      {
+        "label" = "hibernate";
+        "action" = "systemctl hibernate";
+        "text" = "Hibernate";
+        "keybind" = "h";
       }
     ];
     style = ''
@@ -56,40 +73,16 @@
           color: #1e1e2e;
       }
 
-      #lock {
-          background-image: image(url("./lock.png"));
-      }
-      #lock:focus {
-          background-image: image(url("./lock-hover.png"));
-      }
-
-      #logout {
-          background-image: image(url("./logout.png"));
-      }
-      #logout:focus {
-          background-image: image(url("./logout-hover.png"));
-      }
-
-      #suspend {
-          background-image: image(url("./sleep.png"));
-      }
-      #suspend:focus {
-          background-image: image(url("./sleep-hover.png"));
-      }
-
-      #shutdown {
-          background-image: image(url("./power.png"));
-      }
-      #shutdown:focus {
-          background-image: image(url("./power-hover.png"));
-      }
-
-      #reboot {
-          background-image: image(url("./restart.png"));
-      }
-      #reboot:focus {
-          background-image: image(url("./restart-hover.png"));
-      }
+       ${
+         lib.concatMapStringsSep "\n" bgImageSection [
+           "logout"
+           "suspend"
+           "shutdown"
+           "reboot"
+           "lock"
+           "hibernate"
+         ]
+       }
     '';
   };
 }

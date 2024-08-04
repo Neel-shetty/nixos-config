@@ -3,13 +3,16 @@
     enable = true;
 
     theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
+      package = pkgs.rose-pine-gtk-theme;
+      name = "rose-pine";
     };
 
     iconTheme = {
       name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "mocha";
+        accent = "lavender";
+      };
     };
 
     gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
