@@ -57,6 +57,7 @@
     tumbler # thunar thumbnails
     xfce4-volumed-pulse
   ];
+  services.flatpak.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
   services.power-profiles-daemon.enable = true;
@@ -82,14 +83,14 @@
     prime.amdgpuBusId = "PCI:5:0:0";
 
     # better performance but high battery usage
-    # prime.sync.enable = true;
+    prime.sync.enable = true;
 
     # Enable offloading. This allows you to run specific applications on the
     # Nvidia GPU, while the rest of the system uses the integrated GPU.
-    prime.offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
+    # prime.offload = {
+    #   enable = true;
+    #   enableOffloadCmd = true;
+    # };
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
@@ -170,6 +171,9 @@
 
   # Enable the GNOME Desktop Environment.
   #  services.xserver.displayManager.gdm.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.config.common.default = "gtk";
+
   services.displayManager.sddm.enable = true;
   programs.hyprland = {
     enable = true;

@@ -15,6 +15,7 @@
     ./modules/kitty.nix
     ./modules/browser.nix
     ./modules/neovim/neovim.nix
+    ./modules/swaylock.nix
     # ./modules/wlogout/wlogout.nix
   ];
 
@@ -24,17 +25,18 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    pureref
     fzf
     bat
     zoxide
     gnumake
+    obs-studio
     unzip
     zip
     ripgrep
     cava
     swww
     swaylock
-    blender
     power-profiles-daemon
     xdotool
     pavucontrol
@@ -96,7 +98,6 @@
     yt-dlp
     zathura
     mupdf
-    notion-app-enhanced
     nb
     neofetch
     musikcube
@@ -155,6 +156,7 @@
     name = "Bibata-Modern-Classic";
     size = 16;
   };
+  security.pam.services.swaylock = {};
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

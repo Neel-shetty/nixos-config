@@ -223,12 +223,12 @@
       };
       network = {
         interval = 1;
-        format-alt = "󰁟 {bandwidthUpBits}";
+        format-alt = "󰁟 {bandwidthUpBytes}";
         format-disconnected = "Disconnected ⚠";
         format-ethernet =
-          "{ifname}: {ipaddr}/{cidr}  󰁟 {bandwidthUpBits} 󰁇 {bandwidthDownBits}";
+          "{ifname}: {ipaddr}/{cidr}  󰁟 {bandwidthUpBytes} 󰁇 {bandwidthDownBytes}";
         format-linked = "{ifname} (No IP) ";
-        format-wifi = "󰁇 {bandwidthDownBits}";
+        format-wifi = "󰁇 {bandwidthDownBytes}";
       };
 
       "tray" = {
@@ -273,7 +273,7 @@
 
       "custom/lock" = {
         "tooltip" = false;
-        "on-click" = "sh -c '(sleep 0.5s; swaylock --grace 0)' & disown";
+        "on-click" = "sh -c '(swaylock)' & disown";
         "format" = "";
       };
 

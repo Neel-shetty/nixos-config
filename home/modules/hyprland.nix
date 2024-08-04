@@ -245,7 +245,7 @@
       "ALT SHIFT, tab, bringactivetotop, "
       ", xf86audioraisevolume, exec, pamixer --allow-boost -i 5 && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low $(pamixer --get-volume) "
       ", xf86audiolowervolume, exec, pamixer --allow-boost -d 5 && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low $(pamixer --get-volume) "
-      ", xf86audiomute, exec, pamixer -t && notify-send $(pamixer --get-volume) "
+      ", xf86audiomute, exec, pamixer -t && notify-send Mute "
       ''
         , xf86AudioMicMute, exec, pamixer --default-source --get-mute | grep -q false && pamixer --default-source -m && notify-send "Mic Switched OFF" || pamixer --default-source -u && notify-send "Mic Switched ON"''
       ", xf86MonBrightnessDown, exec, brightnessctl set 10%- && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low $(brightnessctl -m | cut -d, -f4)"
