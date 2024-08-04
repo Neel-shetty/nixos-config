@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   home.username = "neel";
@@ -149,6 +149,8 @@
   ];
 
   programs.nix-index-database.comma.enable = true;
+  catppuccin.flavor = "mocha";
+  catppuccin.enable = true;
   home.pointerCursor = {
     gtk.enable = true;
     # x11.enable = true;

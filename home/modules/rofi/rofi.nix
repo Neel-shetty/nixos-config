@@ -19,6 +19,6 @@
       sidebar-mode = true;
     };
     font = "JetBrainsMono Nerd Font 14";
-    theme = ./catppuccin-mocha.rasi;
+    # theme = ./catppuccin-mocha.rasi;
   };
 }
