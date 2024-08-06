@@ -200,6 +200,8 @@
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
+#  services.gnome3.gnome-keyring.enable = true;
+#  security.pam.services.sddm.enableGnomeKeyring = true;
   security.rtkit.enable = true;
   security.pam.services.swaylock = { };
   services.pipewire = {

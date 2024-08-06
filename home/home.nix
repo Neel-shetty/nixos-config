@@ -27,6 +27,7 @@
     signal-desktop
     # catppuccin-sddm
     jdk22
+    protonvpn-gui
     pureref
     fzf
     bat
