@@ -27,6 +27,7 @@
     signal-desktop
     # catppuccin-sddm
     jdk22
+    ryujinx
     protonvpn-gui
     pureref
     fzf
