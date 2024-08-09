@@ -159,6 +159,7 @@
     '';
     settings = [{
       layer = "top";
+      output = "HDMI-A-1";
       position = "top";
       modules-left = [ "hyprland/workspaces" "cpu" "memory" "backlight" ];
       modules-center = [ "clock" "network" ];

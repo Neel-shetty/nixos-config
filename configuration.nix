@@ -144,6 +144,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # networking.nameservers = ["45.90.28.248" "45.90.30.248"];
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -200,8 +201,8 @@
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
-#  services.gnome3.gnome-keyring.enable = true;
-#  security.pam.services.sddm.enableGnomeKeyring = true;
+  #  services.gnome3.gnome-keyring.enable = true;
+  #  security.pam.services.sddm.enableGnomeKeyring = true;
   security.rtkit.enable = true;
   security.pam.services.swaylock = { };
   services.pipewire = {
@@ -215,6 +216,16 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+  };
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    settings = {
+      require_dnssec = true;
+      server_names = [ "NextDNS-1d19b2" ];
+      static.NextDNS-1d19b2 = {
+        stamp = "sdns://AgEAAAAAAAAAAAAOZG5zLm5leHRkbnMuaW8HLzFkMTliMg";
+      };
+    };
   };
 
   virtualisation.libvirtd = {
@@ -243,7 +254,7 @@
   users.users.neel = {
     isNormalUser = true;
     description = "neel";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
     packages = with pkgs;
       [
         #  thunderbird
