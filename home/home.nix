@@ -25,7 +25,7 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
-    # catppuccin-sddm
+    gamescope
     jdk22
     ryujinx
     protonvpn-gui
