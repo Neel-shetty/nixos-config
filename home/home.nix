@@ -14,7 +14,7 @@
     ./modules/gtk.nix
     ./modules/kitty.nix
     ./modules/browser.nix
-    ./modules/neovim/neovim.nix
+    # ./modules/neovim/neovim.nix
     ./modules/swaylock.nix
     ./modules/wlogout/wlogout.nix
   ];
@@ -25,6 +25,8 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
+    # nvidia-container-toolkit
+    nvidia-docker
     gamescope
     jdk22
     ryujinx
