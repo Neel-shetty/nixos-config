@@ -26,7 +26,9 @@
   home.packages = with pkgs; [
     signal-desktop
     # nvidia-container-toolkit
-    nvidia-docker
+    # nvidia-docker
+    distrobox
+    tmux
     gamescope
     jdk22
     ryujinx

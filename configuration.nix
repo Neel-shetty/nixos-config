@@ -58,6 +58,7 @@
     xfce4-volumed-pulse
   ];
   virtualisation.docker.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
   services.flatpak.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
@@ -274,7 +275,7 @@
     sops
     git
     brave
-    cudatoolkit
+    # cudatoolkit
     zsh
     appimage-run
     (catppuccin-sddm.override {
