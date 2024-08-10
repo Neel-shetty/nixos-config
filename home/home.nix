@@ -25,8 +25,6 @@
   # environment.
   home.packages = with pkgs; [
     signal-desktop
-    # nvidia-container-toolkit
-    # nvidia-docker
     distrobox
     tmux
     gamescope
