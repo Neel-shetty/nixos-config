@@ -1,8 +1,8 @@
 { config, pkgs, inputs, ... }: {
   imports = [ 
     ./hardware-configuration.nix
-    ./home/modules/cron.nix
-    ./home/modules/cloudflared.nix
+    ./modules/cron.nix
+    ./modules/cloudflared.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
