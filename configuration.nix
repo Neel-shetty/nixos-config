@@ -1,9 +1,5 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, inputs, ... }: {
-  imports = [ # Include the results of the hardware scan.
+  imports = [ 
     ./hardware-configuration.nix
     ./home/modules/cron.nix
     ./home/modules/cloudflared.nix
@@ -31,7 +27,6 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
   # This is the actual specification of the secrets.
-
   # decrypted outputs will be stored in /run/secrets
   # eg: /run/secrets/cloudflared-tunnel-token
   sops.secrets = {
@@ -41,7 +36,6 @@
       restartUnits = [ "cloudflared.service" ];
     };
   };
-  # sops.secrets."myservice/my_subdir/my_secret" = {};
 
   # Enable OpenGL
   hardware.graphics = { enable = true; };
@@ -67,7 +61,7 @@
     xfce4-volumed-pulse
   ];
   virtualisation.docker.enable = true;
-  hardware.nvidia-container-toolkit.enable = true;
+  # hardware.nvidia-container-toolkit.enable = true;
   services.flatpak.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
@@ -173,6 +167,8 @@
 
   # Enable the GNOME Desktop Environment.
   #  services.xserver.displayManager.gdm.enable = true;
+  #  services.xserver.desktopManager.gnome.enable = true;
+
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   xdg.portal.config.common.default = "gtk";
 
@@ -187,7 +183,6 @@
     package =
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   };
-  #  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
