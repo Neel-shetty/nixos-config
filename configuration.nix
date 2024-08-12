@@ -3,14 +3,14 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-let 
+let
   start-cloudflared = pkgs.writeShellScript "start-cloudflared" ''
     cat ${config.sops.secrets.cloudflared-tunnel-token.path} | xargs -I {} ${pkgs.cloudflared}/bin/cloudflared tunnel run --token {}
   '';
-in
-{
+in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./home/modules/cron.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -76,16 +76,6 @@ in
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
   services.power-profiles-daemon.enable = true;
-  # services.cloudflared = {
-  #   enable = true;
-  #   tunnels = {
-  #     "28c78bae-1b14-4e04-9a4e-8ddc4f909e3c" = {
-  #       credentialsFile =
-  #         "/home/neel/.cloudflared/28c78bae-1b14-4e04-9a4e-8ddc4f909e3c.json";
-  #       default = "http_status:404";
-  #     };
-  #   };
-  # };
   systemd.services.cloudflared = {
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" "network-online.target" ];
