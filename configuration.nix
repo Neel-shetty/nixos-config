@@ -3,7 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-
+let 
+  start-cloudflared = pkgs.writeShellScript "start-cloudflared" ''
+    cat ${config.sops.secrets.cloudflared-tunnel-token.path} | xargs -I {} ${pkgs.cloudflared}/bin/cloudflared tunnel run --token {}
+  '';
+in
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -31,7 +35,16 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey = true;
   # This is the actual specification of the secrets.
-  sops.secrets.example_key = { };
+
+  # decrypted outputs will be stored in /run/secrets
+  # eg: /run/secrets/cloudflared-tunnel-token
+  sops.secrets = {
+    cloudflared-tunnel-token = {
+      owner = config.users.users.neel.name;
+      inherit (config.users.users.neel) group;
+      restartUnits = [ "cloudflared.service" ];
+    };
+  };
   # sops.secrets."myservice/my_subdir/my_secret" = {};
 
   # Enable OpenGL
@@ -73,6 +86,23 @@
   #     };
   #   };
   # };
+  systemd.services.cloudflared = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" "network-online.target" ];
+    wants = [ "network.target" "network-online.target" ];
+    serviceConfig = {
+      # ExecStart =
+      # "cat ${config.sops.secrets.cloudflared-tunnel-token.path} | xargs -I {} ${pkgs.cloudflared}/bin/cloudflared tunnel run --token {}";
+      # ExecStart =
+      #   "${pkgs.zsh} -c 'cat ${config.sops.secrets.cloudflared-tunnel-token.path} | xargs -I {} ${pkgs.cloudflared}/bin/cloudflared tunnel run --token {}'";
+      # # ExecStart = "${pkgs.cloudflared}/bin/cloudflared --version";
+      ExecStart = "${start-cloudflared}";
+      Restart = "always";
+      RestartSec = "3";
+      User = "neel";
+      Group = "users";
+    };
+  };
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -261,6 +291,11 @@
         #  thunderbird
       ];
   };
+  users.groups.cloudflared = { };
+  users.users.cloudflared = {
+    group = "cloudflared";
+    isSystemUser = true;
+  };
   users.defaultUserShell = pkgs.zsh;
 
   # Allow unfree packages
@@ -278,6 +313,7 @@
     # cudatoolkit
     zsh
     appimage-run
+    # (import ./scripts/start-cloudflared.nix { inherit pkgs config; })
     (catppuccin-sddm.override {
       flavor = "mocha";
       font = "JetBrainsMono Nerd Font";
