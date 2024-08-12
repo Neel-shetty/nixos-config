@@ -2,15 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
-let
-  start-cloudflared = pkgs.writeShellScript "start-cloudflared" ''
-    cat ${config.sops.secrets.cloudflared-tunnel-token.path} | xargs -I {} ${pkgs.cloudflared}/bin/cloudflared tunnel run --token {}
-  '';
-in {
+{ config, pkgs, inputs, ... }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./home/modules/cron.nix
+    ./home/modules/cloudflared.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -76,23 +72,6 @@ in {
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
   services.power-profiles-daemon.enable = true;
-  systemd.services.cloudflared = {
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" "network-online.target" ];
-    wants = [ "network.target" "network-online.target" ];
-    serviceConfig = {
-      # ExecStart =
-      # "cat ${config.sops.secrets.cloudflared-tunnel-token.path} | xargs -I {} ${pkgs.cloudflared}/bin/cloudflared tunnel run --token {}";
-      # ExecStart =
-      #   "${pkgs.zsh} -c 'cat ${config.sops.secrets.cloudflared-tunnel-token.path} | xargs -I {} ${pkgs.cloudflared}/bin/cloudflared tunnel run --token {}'";
-      # # ExecStart = "${pkgs.cloudflared}/bin/cloudflared --version";
-      ExecStart = "${start-cloudflared}";
-      Restart = "always";
-      RestartSec = "3";
-      User = "neel";
-      Group = "users";
-    };
-  };
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -280,11 +259,6 @@ in {
       [
         #  thunderbird
       ];
-  };
-  users.groups.cloudflared = { };
-  users.users.cloudflared = {
-    group = "cloudflared";
-    isSystemUser = true;
   };
   users.defaultUserShell = pkgs.zsh;
 
