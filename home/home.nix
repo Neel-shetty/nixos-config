@@ -21,6 +21,7 @@
 
   home.packages = with pkgs; [
     signal-desktop
+    activitywatch
     distrobox
     tmux
     gamescope
@@ -118,6 +119,7 @@
     guacamole-client
 
     # programming languages
+    lua
     python3
     jdk22
     nodejs_22
