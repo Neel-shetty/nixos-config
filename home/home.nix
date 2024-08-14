@@ -17,6 +17,7 @@
     # ./modules/neovim/neovim.nix
     ./modules/swaylock.nix
     ./modules/wlogout/wlogout.nix
+    ./modules/tmux.nix
   ];
 
   home.packages = with pkgs; [
