@@ -76,6 +76,7 @@
       "workspace 1, class:^(org.telegram.desktop)$"
       "workspace 2, class:^(firefox)$"
       "workspace 2, class:^(brave-browser)$"
+      "fullscreenstate 1 1, class:^(brave-browser)$"
       "workspace 2, class:^(Firefox-esr)$"
       "workspace 3, class:^([Tt]hunar)$"
       "workspace 4, class:^(org.jellyfin.jellyfinmediaplayer)$"
@@ -119,6 +120,7 @@
         new_optimizations = true;
       };
     };
+    render.direct_scanout = true;
     # animations = {
     #   enabled = "yes";
     #   # enabled = no
@@ -185,7 +187,7 @@
       mouse_move_enables_dpms = true;
       vrr = 2;
       enable_swallow = true;
-      no_direct_scanout = true; # for fullscreen games
+      #no_direct_scanout = true; # for fullscreen games
       focus_on_activate = false;
       swallow_regex = "^(kitty)$";
     };
