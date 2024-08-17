@@ -40,4 +40,9 @@
     };
     initExtra = "eval \"$(zoxide init zsh)\"";
   };
+
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }

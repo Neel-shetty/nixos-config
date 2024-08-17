@@ -21,6 +21,7 @@
   ];
 
   home.packages = with pkgs; [
+    atuin
     signal-desktop
     activitywatch
     distrobox
