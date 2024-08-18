@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
   programs.zsh = {
     enable = true;
-    # enableCompletion = true;
+    enableCompletion = false;
     autocd = true;
     completionInit = ''
       # On slow systems, checking the cached .zcompdump file to see if it must be 
@@ -27,7 +27,7 @@
       src = lib.cleanSource ./.;
       file = ".p10k.zsh";
     }];
-    initExtraFirst = "zmodload zsh/zprof";
+    # initExtraFirst = "zmodload zsh/zprof";
     zplug = {
       enable = true;
       plugins = [
@@ -57,7 +57,7 @@
     };
     initExtra = ''
       eval "$(zoxide init zsh)"
-      zprof
+      # zprof
     '';
   };
 
