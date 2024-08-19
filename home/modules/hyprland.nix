@@ -79,6 +79,7 @@
       "float, class:^([Vv]iewnior)$"
       "workspace 1, class:^(signal)$"
       "workspace 1, class:^(org.telegram.desktop)$"
+      "workspace 1, class:^(obsidian)$"
       "workspace 2, class:^(firefox)$"
       "workspace 2, class:^(brave-browser)$"
       "fullscreenstate 2 1, class:^(brave-browser)$"
