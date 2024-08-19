@@ -57,6 +57,11 @@
       "col.border_active" = "rgba(7aa2f7aa)";
       groupbar = { "col.active" = "rgba(7aa2f7aa)"; };
     };
+    workspace = [
+      "1, monitor:HDMI-A-1, default:true"
+      "3, monitor:HDMI-A-1"
+      "5, monitor:HDMI-A-1"
+    ];
     windowrule = [
       "float, pavucontrol"
       "float, org.kde.polkit-kde-authentication-agent-1"
@@ -76,7 +81,7 @@
       "workspace 1, class:^(org.telegram.desktop)$"
       "workspace 2, class:^(firefox)$"
       "workspace 2, class:^(brave-browser)$"
-      "fullscreenstate 1 1, class:^(brave-browser)$"
+      "fullscreenstate 2 1, class:^(brave-browser)$"
       "workspace 2, class:^(Firefox-esr)$"
       "workspace 3, class:^([Tt]hunar)$"
       "workspace 4, class:^(org.jellyfin.jellyfinmediaplayer)$"
@@ -203,6 +208,8 @@
       "dunst -conf ~/.config/dunst/dunstrc &"
       "swww-daemon &"
       "nm-applet --indicator &"
+      "flatpak run md.obsidian.Obsidian &"
+      "brave &"
       "wl-paste --watch cliphist store"
     ];
     monitor = [ "eDP-1,1920x1080@144,auto,1" ",1280x1024,auto,1" ];
@@ -293,6 +300,10 @@
       "$mod, mouse_up, workspace, e-1"
       "$mod, period, workspace, e+1"
       "$mod, comma, workspace, e-1"
+
+      # toggle waybar
+      "ALT, B, exec, killall -SIGUSR1 waybar"
+      "ALT SHIFT, B, exec, killall -SIGUSR2 waybar"
 
     ] ++ (
       # workspaces

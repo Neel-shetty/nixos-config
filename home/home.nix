@@ -22,6 +22,7 @@
 
   home.packages = with pkgs; [
     atuin
+    busybox
     signal-desktop
     activitywatch
     distrobox

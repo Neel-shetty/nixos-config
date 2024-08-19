@@ -159,7 +159,7 @@
     '';
     settings = [{
       layer = "top";
-      output = "HDMI-A-1";
+      # output = "HDMI-A-1";
       position = "top";
       modules-left = [ "hyprland/workspaces" "cpu" "memory" "backlight" ];
       modules-center = [ "clock" "network" ];
@@ -173,22 +173,22 @@
       ];
 
       "hyprland/workspaces" = {
-        "sort-by-name" = true;
-        "format" = " {icon} ";
-        "format-icons" = { "default" = ""; };
-        active-only = false;
-        "all-outputs" = true;
-        "show-special" = false;
+        # "sort-by-name" = true;
+        # "format" = " {icon} ";
+        # "format-icons" = { "default" = ""; };
+        # active-only = false;
+        # "all-outputs" = true;
+        # "show-special" = false;
         "on-click" = "activate";
         "on-scroll-up" = "hyprctl dispatch workspace e+1";
         "on-scroll-down" = "hyprctl dispatch workspace e-1";
-        "persistent-workspaces" = {
-          "1" = [ ];
-          "2" = [ ];
-          "3" = [ ];
-          "4" = [ ];
-          "5" = [ ];
-        };
+        # "persistent-workspaces" = {
+        #   "1" = [ ];
+        #   "2" = [ ];
+        #   "3" = [ ];
+        #   "4" = [ ];
+        #   "5" = [ ];
+        # };
         # "format-icons" = {
         #   "active" = "";
         #   "default" = "";
