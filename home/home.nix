@@ -22,7 +22,7 @@
 
   home.packages = with pkgs; [
     atuin
-    # busybox
+    space-cadet-pinball
     signal-desktop
     activitywatch
     distrobox
@@ -123,6 +123,7 @@
 
     # programming languages
     lua
+    lua-language-server
     python3
     jdk22
     nodejs_22

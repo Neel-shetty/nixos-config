@@ -32,6 +32,8 @@
 
       set -g pane-base-index 1
 
+      set -sg escape-time 0
+
       # splitting panes
       bind '|' split-window -h -c '#{pane_current_path}'
       bind - split-window -v -c '#{pane_current_path}'
