@@ -302,8 +302,12 @@
       "$mod, comma, workspace, e-1"
 
       # toggle waybar
-      "ALT, B, exec, killall -SIGUSR1 waybar"
-      "ALT SHIFT, B, exec, killall -SIGUSR2 waybar"
+      ''
+      ALT, B, exec, nix-shell -p toybox.out --run "killall -SIGUSR1 waybar"
+      ''
+      ''
+      ALT SHIFT, B, exec, nix-shell -p toybox.out --run "killall -SIGUSR2 waybar" 
+      ''
 
     ] ++ (
       # workspaces
