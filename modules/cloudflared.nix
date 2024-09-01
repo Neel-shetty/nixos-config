@@ -5,7 +5,8 @@ let
   '';
 in {
   systemd.services.cloudflared = {
-    wantedBy = [ "multi-user.target" ];
+    # uncomment line below to enable service
+    # wantedBy = [ "multi-user.target" ];
     after = [ "network.target" "network-online.target" ];
     wants = [ "network.target" "network-online.target" ];
     serviceConfig = {

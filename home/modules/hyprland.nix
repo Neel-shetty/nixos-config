@@ -82,7 +82,6 @@
       "workspace 1, class:^(obsidian)$"
       "workspace 2, class:^(firefox)$"
       "workspace 2, class:^(brave-browser)$"
-      "fullscreenstate 2 1, class:^(brave-browser)$"
       "workspace 2, class:^(Firefox-esr)$"
       "workspace 3, class:^([Tt]hunar)$"
       "workspace 4, class:^(org.jellyfin.jellyfinmediaplayer)$"
