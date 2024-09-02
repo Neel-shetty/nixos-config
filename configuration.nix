@@ -163,6 +163,7 @@
   services.jellyfin = {
     enable = true;
     openFirewall = true;
+    group = "users";
   };
 
   # Enable the GNOME Desktop Environment.
