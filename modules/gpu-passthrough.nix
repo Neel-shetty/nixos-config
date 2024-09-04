@@ -30,6 +30,10 @@ in { pkgs, lib, config, ... }: {
         ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
     };
 
+    systemd.tmpfiles.rules = [
+      "f /dev/shm/looking-glass 0660 neel kvm -"
+    ];
+
     # hardware.opengl.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
   };

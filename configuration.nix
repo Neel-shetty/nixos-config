@@ -254,12 +254,13 @@
   users.users.neel = {
     isNormalUser = true;
     description = "neel";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "kvm" ];
     packages = with pkgs;
       [
         #  thunderbird
       ];
   };
+  users.groups.kvm = {};
   users.defaultUserShell = pkgs.zsh;
 
   # Allow unfree packages
