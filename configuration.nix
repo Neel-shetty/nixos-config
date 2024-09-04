@@ -3,7 +3,11 @@
     ./hardware-configuration.nix
     ./modules/cron.nix
     ./modules/cloudflared.nix
+    ./modules/gpu-passthrough.nix
   ];
+
+  ## GPU Passthrough for windows VM
+  vfio.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.optimise.automatic = true;
