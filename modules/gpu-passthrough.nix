@@ -34,7 +34,6 @@ in { pkgs, lib, config, ... }: {
       "f /dev/shm/looking-glass 0660 neel kvm -"
     ];
 
-    hardware.opengl.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
   };
 }

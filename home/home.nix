@@ -23,6 +23,7 @@
   home.packages = with pkgs; [
     atuin
     space-cadet-pinball
+    virtiofsd
     signal-desktop
     activitywatch
     distrobox
@@ -110,7 +111,6 @@
     gparted
     gh
     figlet
-    pgadmin4
     code-server
     cloudflared
     android-file-transfer
@@ -131,6 +131,9 @@
     rustup
     zig
     gcc
+
+    # databases
+    pgadmin4-desktopmode
 
     # fonts
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
