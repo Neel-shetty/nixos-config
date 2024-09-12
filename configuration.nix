@@ -7,7 +7,7 @@
   ];
 
   ## GPU Passthrough for windows VM
-  vfio.enable = true;
+  vfio.enable = false;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.optimise.automatic = true;
@@ -253,12 +253,16 @@
   programs.zsh.enable = true;
   users.users.neel = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     description = "neel";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "kvm" ];
     packages = with pkgs;
       [
         #  thunderbird
       ];
+  };
+  environment.variables = {
+    NIX_BUILD_SHELL = "${pkgs.zsh}/bin/zsh";
   };
   users.groups.kvm = {};
   users.defaultUserShell = pkgs.zsh;
