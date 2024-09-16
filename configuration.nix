@@ -253,16 +253,12 @@
   programs.zsh.enable = true;
   users.users.neel = {
     isNormalUser = true;
-    shell = pkgs.zsh;
     description = "neel";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "kvm" ];
     packages = with pkgs;
       [
         #  thunderbird
       ];
-  };
-  environment.variables = {
-    NIX_BUILD_SHELL = "${pkgs.zsh}/bin/zsh";
   };
   users.groups.kvm = {};
   users.defaultUserShell = pkgs.zsh;
