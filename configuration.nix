@@ -66,6 +66,10 @@
   ];
   virtualisation.docker.enable = true;
   # hardware.nvidia-container-toolkit.enable = true;
+
+  #services.openvpn.servers = {
+  #  azure-neel = { config = '' config /home/neel/.vpn/azure-neel.ovpn ''; };
+  #};
   services.flatpak.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
@@ -183,6 +187,7 @@
     wayland.enable = true;
     package = pkgs.kdePackages.sddm;
   };
+  programs.openvpn3.enable = true;
   programs.hyprland = {
     enable = true;
     package =

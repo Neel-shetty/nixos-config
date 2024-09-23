@@ -22,6 +22,7 @@
 
   home.packages = with pkgs; [
     atuin
+    openvpn3
     space-cadet-pinball
     virtiofsd
     signal-desktop
