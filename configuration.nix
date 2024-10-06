@@ -210,6 +210,16 @@
   #  security.pam.services.sddm.enableGnomeKeyring = true;
   security.rtkit.enable = true;
   security.pam.services.swaylock = { };
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
+  };
+  services.blueman.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -251,6 +261,10 @@
     };
   };
 
+  programs.adb.enable = true;
+
+  services.logind.lidSwitchExternalPower = "ignore";
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -259,7 +273,7 @@
   users.users.neel = {
     isNormalUser = true;
     description = "neel";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "kvm" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "kvm" "adbusers" ];
     packages = with pkgs;
       [
         #  thunderbird

@@ -46,8 +46,8 @@
       mfact = 0.5;
     };
     general = {
-      sensitivity = 2.5;
-      apply_sens_to_raw = 1;
+      # sensitivity = 2.5;
+      # apply_sens_to_raw = 1;
       gaps_in = 8;
       gaps_out = 8;
       border_size = 1;
@@ -166,6 +166,7 @@
       left_handed = 0;
       follow_mouse = 1;
       float_switch_override_focus = 0;
+      sensitivity = 1;
 
       touchpad = {
         disable_while_typing = 0;

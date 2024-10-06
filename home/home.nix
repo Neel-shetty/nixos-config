@@ -5,6 +5,8 @@
   home.homeDirectory = "/home/neel";
   home.stateVersion = "24.05";
 
+  services.mpris-proxy.enable = true;
+
   imports = [
     ./modules/zsh/zsh.nix
     ./modules/rofi/rofi.nix
@@ -21,11 +23,13 @@
   ];
 
   home.packages = with pkgs; [
+    atomicparsley
     atuin
     openvpn3
     space-cadet-pinball
     virtiofsd
     signal-desktop
+    file
     activitywatch
     distrobox
     tmux
@@ -122,6 +126,11 @@
     guacamole-server
     guacamole-client
 
+
+    # dev env
+    android-studio
+    android-studio-tools
+
     # programming languages
     lua
     lua-language-server
@@ -141,6 +150,7 @@
 
     # scripts
     (import ../scripts/gacp.nix { inherit pkgs; })
+    (import ../scripts/bluebat.nix { inherit pkgs; })
   ];
 
   programs.nix-index-database.comma.enable = true;
