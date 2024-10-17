@@ -209,6 +209,7 @@
       "dunst -conf ~/.config/dunst/dunstrc &"
       "swww-daemon &"
       "nm-applet --indicator &"
+      "blueman-applet &"
       "flatpak run md.obsidian.Obsidian &"
       "brave &"
       "wl-paste --watch cliphist store"

@@ -78,7 +78,8 @@
     xfce.xfce4-volumed-pulse
     xfce.xfconf # thunar save settings
     webcord-vencord
-    wine
+    wine64
+    (wine.override { wineBuild = "wine64"; })
     lutris
     cliphist
     steam
