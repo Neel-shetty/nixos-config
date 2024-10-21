@@ -4,6 +4,7 @@
     ./modules/cron.nix
     ./modules/cloudflared.nix
     ./modules/gpu-passthrough.nix
+    ./modules/openrgb/openrgb.nix
   ];
 
   ## GPU Passthrough for windows VM
@@ -71,6 +72,7 @@
   #  azure-neel = { config = '' config /home/neel/.vpn/azure-neel.ovpn ''; };
   #};
   services.flatpak.enable = true;
+  services.ratbagd.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
   services.power-profiles-daemon.enable = true;

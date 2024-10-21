@@ -23,7 +23,9 @@
   ];
 
   home.packages = with pkgs; [
-    atomicparsley
+    piper
+    openrgb
+    i2c-tools
     atuin
     openvpn3
     space-cadet-pinball
