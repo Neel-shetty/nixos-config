@@ -6,6 +6,7 @@
   home.stateVersion = "24.05";
 
   services.mpris-proxy.enable = true;
+  services.gnome-keyring.enable = true;
 
   imports = [
     ./modules/zsh/zsh.nix
@@ -26,6 +27,11 @@
     piper
     openrgb
     i2c-tools
+    dbeaver-bin
+    gdb
+    pkg-config
+    mono
+    p7zip
     atuin
     openvpn3
     space-cadet-pinball

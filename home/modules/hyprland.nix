@@ -214,10 +214,11 @@
       "brave &"
       "wl-paste --watch cliphist store"
     ];
-    monitor = [ "eDP-1,1920x1080@144,auto,1" ",1280x1024,auto,1" ];
+    monitor = [ "eDP-1,1920x1080@144,auto,1" ", preferred, auto, 1, mirror,eDP-1" ];
 
     bind = [
       "$mod, B, exec, brave"
+      "$mod, J, exec, jellyfinmediaplayer"
       "$mod, D, exec, pkill rofi || rofi -show drun -modi run,drun,filebrowser"
       "$mod, F1, focusmonitor, +1"
       "$mod, F2, focusmonitor, -1"
