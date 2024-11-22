@@ -25,6 +25,9 @@
 
   home.packages = with pkgs; [
     piper
+    devenv
+    figma-linux
+    onlyoffice-bin_latest
     openrgb
     i2c-tools
     dbeaver-bin
@@ -44,7 +47,6 @@
     gamescope
     ryujinx
     protonvpn-gui
-    pureref
     fzf
     bat
     zoxide
@@ -108,7 +110,6 @@
     man
     man-pages
     postman
-    pureref
     qbittorrent
     telegram-desktop
     tree
@@ -144,7 +145,7 @@
     lua
     lua-language-server
     python3
-    jdk22
+    jdk
     nodejs_22
     go
     rustup
